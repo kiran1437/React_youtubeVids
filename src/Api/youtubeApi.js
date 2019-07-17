@@ -11,20 +11,17 @@ class YoutubeApi {
     }
     
 
-    search = (term) => {
-        this.Axios.get('/search',{
-            
-            params: { part: "snippet",
-                      type: "video",
-                      q: term,
-                      maxResults: "20",
-                      key : "AIzaSyC5fXmfpzECBRPw8ATCqPIGDl0nnzkfANk"                      
-                    }
+    search = async (term) => {
+       const response = await this.Axios.get('/search',{
+                        params: { part: "snippet",
+                                type: "video",
+                                q: term,
+                                maxResults: "20",
+                                key : "AIzaSyC5fXmfpzECBRPw8ATCqPIGDl0nnzkfANk"                      
+                                }
+                        })
         
-        }).then( response =>{
-                console.log(response.data.items)
-                
-                });
+        return response.data.items;
     }
 
 }

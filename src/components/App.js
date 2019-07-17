@@ -1,28 +1,38 @@
 import React from 'react';
 import SearchBar from './searchBar'
 import YoutubeApi from '../Api/youtubeApi'
+import VideoList from './videoList'
+import VideoPlayer from './videoPlayer'
 
 
 
 class App extends React.Component{
+    state = {vidarr:[]};
     constructor(){
         super()
-        this.state = {searchresults : []}
         this.youtubeapi = new YoutubeApi()
     }
 
 
-     getSearchTerm = (term) =>{
+    getSearchTerm = (term) =>{
         /* callback function */
-        this.youtubeapi.search(term)
-        
+        const response = this.youtubeapi.search(term)
+        Promise.resolve(response)
+            .then(vidarr => this.setState({vidarr}))   
     }
+
+
     
     render(){
-        console.log(this.state)
-        return (
-            
-            <div><SearchBar callbackF = {this.getSearchTerm}/></div>
+       
+        return (            
+            <div>
+            <SearchBar callbackF = {this.getSearchTerm} />
+            <VideoPlayer />
+                <div> 
+                    <VideoList vids={this.state}/>
+                </div>
+            </div>
         )    
     }
 }
