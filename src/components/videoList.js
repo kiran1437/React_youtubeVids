@@ -8,11 +8,15 @@ class VideoList extends React.Component{
     genrateVidItems = (item) =>{
         return item;
     }
+    callback = (item) => {
+        this.props.onClickCallback(item)
+    }
+
 
     render(){
-       
+       console.log(this.props)
         const items = this.props.vids.vidarr.map(x =>{
-                         return <VideoItem item = {x} />       
+                         return <VideoItem item = {x} onClickCallback = {this.callback}/>       
                         })            
         return <div> {items} </div>
     }

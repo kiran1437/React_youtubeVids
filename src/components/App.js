@@ -21,6 +21,11 @@ class App extends React.Component{
             .then(vidarr => this.setState({vidarr}))   
     }
 
+    onThumbnailClick = (viddetails) => {
+        /* callback */
+        console.log(viddetails)
+
+    }
 
     
     render(){
@@ -28,9 +33,9 @@ class App extends React.Component{
         return (            
             <div>
             <SearchBar callbackF = {this.getSearchTerm} />
-            <VideoPlayer />
+            <VideoPlayer vidtitle = "xyz" source = "https://www.youtube.com/embed/tgbNymZ7vqY"/>
                 <div> 
-                    <VideoList vids={this.state}/>
+                    <VideoList vids={this.state} onClickCallback = {this.onThumbnailClick} />
                 </div>
             </div>
         )    
