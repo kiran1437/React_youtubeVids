@@ -4,7 +4,7 @@ class VideoItem extends React.Component {
   state = this.props.item;
 
   onThumbnailClick = event => {
-    this.props.onClickCallback(this.state);
+    this.props.onClickCallback(this.props.item);
   };
   render() {
     return (
